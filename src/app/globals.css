@@ -1,26 +1,125 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+  --color-cyan: var(--cyan);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* FloodWise palette — dark-only control-centre theme */
+:root, .dark {
+  --background: #081426;
+  --foreground: #F8FAFC;
+  --card: #142B42;
+  --card-foreground: #F8FAFC;
+  --popover: #10243A;
+  --popover-foreground: #F8FAFC;
+  --primary: #38BDF8;
+  --primary-foreground: #04121F;
+  --secondary: #10243A;
+  --secondary-foreground: #F8FAFC;
+  --muted: #10243A;
+  --muted-foreground: #94A3B8;
+  --accent: #1B3652;
+  --accent-foreground: #F8FAFC;
+  --destructive: #EF4444;
+  --border: rgb(148 163 184 / 16%);
+  --input: rgb(148 163 184 / 22%);
+  --ring: #22D3EE;
+  --chart-1: #38BDF8;
+  --chart-2: #22D3EE;
+  --chart-3: #F59E0B;
+  --chart-4: #22C55E;
+  --chart-5: #EF4444;
+  --radius: 0.6rem;
+  --sidebar: #0B1A2E;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #38BDF8;
+  --sidebar-primary-foreground: #04121F;
+  --sidebar-accent: #142B42;
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: rgb(148 163 184 / 14%);
+  --sidebar-ring: #22D3EE;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --critical: #EF4444;
+  --cyan: #22D3EE;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
+@layer base {
+  body { background: var(--background); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.maplibregl-popup-content { background: #10243A; color: #F8FAFC; border: 1px solid rgb(148 163 184 / 20%); }
+.maplibregl-ctrl-attrib { background: rgb(8 20 38 / 80%) !important; color: #94A3B8; }
+.maplibregl-ctrl-attrib a { color: #94A3B8 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@media print {
+  :root { --background: #fff; --foreground: #0f172a; --card: #fff; --muted-foreground: #334155; --border: #cbd5e1; }
+  body { background: #fff !important; color: #0f172a !important; }
+  .no-print { display: none !important; }
+  .print-page { box-shadow: none !important; border: 0 !important; }
+  a { color: #0f172a; }
 }

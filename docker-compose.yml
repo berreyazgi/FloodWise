@@ -1,0 +1,13 @@
+services:
+  floodwise:
+    build: .
+    ports: ["3000:3000"]
+    environment: # read from .env if present
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
+    volumes:
+      - db:/app/data/db
+      - uploads:/app/data/uploads
+volumes:
+  db:
+  uploads:
