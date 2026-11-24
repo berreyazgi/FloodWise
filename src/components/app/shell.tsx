@@ -152,7 +152,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="border-b border-warning/30 bg-warning/10 px-4 py-1 text-center text-xs text-warning sm:hidden">Demo / Ön Fizibilite</div>
         <main className="mx-auto w-full max-w-[1400px] flex-1 p-3 sm:p-5">{children}</main>
         <footer className="border-t border-border px-4 py-3 text-center text-[11px] text-muted-foreground">
-          Prototip karar destek aracıdır; sertifikalı taşkın tahmini, erken uyarı veya pompa mühendisliği sistemi değildir. Belediye onayı içermez. Harita © OpenStreetMap katkıcıları, © CARTO.
+          Flowguard takımı · Prototip karar destek aracıdır. Harita © OpenStreetMap katkıcıları, © CARTO.
         </footer>
       </div>
     </div>

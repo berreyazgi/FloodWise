@@ -3,6 +3,7 @@ import { ArrowRight, BarChart3, Building2, CloudRain, ExternalLink, FileText, La
 import { buttonVariants } from "@/components/ui/button";
 import { HISTORICAL_EVENTS } from "@/data/seed";
 import { HeroMap } from "@/components/map/hero-map";
+import { JuryTour } from "@/components/app/jury-tour";
 
 const STEPS = [
   { icon: CloudRain, t: "Geçmiş veriler", d: "Doğrulanmış olaylar, ERA5 yağış yeniden analizi" },
@@ -43,14 +44,17 @@ export default function Landing() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/map" className={buttonVariants({ size: "lg" })} data-testid="cta-map">Risk Haritasını Keşfet <ArrowRight className="size-4" /></Link>
             <a href="#nasil" className={buttonVariants({ size: "lg", variant: "secondary" })}>Platform Nasıl Çalışır?</a>
+            <a href="#jury-tour" className={buttonVariants({ size: "lg", variant: "secondary" })}>Jüri turu</a>
           </div>
         </div>
-        <div className="relative h-80 overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/40 sm:h-[26rem]">
-          <HeroMap />
-          <div className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-md bg-background/85 px-2 py-1 text-[11px] text-muted-foreground">
-            Gösterim: pilot ilçe sınırları, OSM dere hatları ve 2009/2023 olaylarıyla ilişkili yaklaşık çalışma alanları. Risk bölgesi beyanı değildir.
+        <figure>
+          <div className="relative h-80 overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/40 sm:h-[26rem]">
+            <HeroMap />
           </div>
-        </div>
+          <figcaption className="mt-2 px-1 text-[11px] text-muted-foreground">
+            Gösterim: pilot ilçe sınırları, OSM dere hatları ve 2009/2023 olaylarıyla ilişkili yaklaşık çalışma alanları.
+          </figcaption>
+        </figure>
       </section>
 
       <section className="border-y border-border bg-secondary/40">
@@ -90,12 +94,14 @@ export default function Landing() {
         </ol>
       </section>
 
+      <JuryTour />
+
       <section className="mx-auto max-w-7xl px-4 pb-12">
         <h2 className="text-2xl font-semibold">Olası faydalar</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {IMPACT.map(([t, d]) => <div key={t} className="rounded-xl border border-border bg-card p-4"><div className="font-medium">{t}</div><div className="mt-1 text-sm text-muted-foreground">{d}</div></div>)}
         </div>
-        <p className="mt-4 text-xs text-muted-foreground">Etkiler ölçülmemiştir; platform taşkınları önlediğini iddia etmez.</p>
+        <p className="mt-4 text-sm text-muted-foreground"><span className="font-medium text-foreground">Başarı göstergesi:</span> geçmişte doğrulanmış taşkın noktalarının modelin öncelik verdiği alanlarda yakalanma oranı (%).</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/dashboard" className={buttonVariants()}><BarChart3 className="size-4" />Genel bakış</Link>
           <Link href="/citizen-report" className={buttonVariants({ variant: "secondary" })}><Users className="size-4" />Vatandaş bildirimi</Link>
@@ -103,7 +109,7 @@ export default function Landing() {
         </div>
       </section>
       <footer className="border-t border-border px-4 py-4 text-center text-[11px] text-muted-foreground">
-        Water AI Hackathon 2026 prototipi. Sertifikalı taşkın tahmini, erken uyarı veya pompa mühendisliği sistemi değildir; belediye onayı içermez.
+        Flowguard takımı · Water AI Hackathon 2026 prototipi. Sertifikalı taşkın tahmini veya pompa mühendisliği sistemi değildir.
       </footer>
     </div>
   );
